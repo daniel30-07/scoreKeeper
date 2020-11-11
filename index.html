@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Keeper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+              <div class="card">
+                <header class="card-header">
+                  <h1 class="card-header-title is-size-2">
+                    Score Keeper
+                  </h1>
+                </header>
+                <div class="card-image">
+                    <figure class="image is-2by1">
+                      <img src="pexels-sascha-düser-187329.jpg" alt="Placeholder image">
+                    </figure>
+                  </div>
+                <div class="card-content">
+                  <div class="content">
+                    <p class="title is-2"><span id="cp1"></span> to <span id="cp2"></span></p>
+                    <label for="points" class="label is-inline">Playing to:</label>
+                    <input class="input is-rounded" type="number" name="points" id="points" min=3 max=15>
+                </div>
+                </div>
+                <footer class="card-footer is-justify-content-space-around">
+                    <button class="button is-primary" id="p1">Player One</button>
+                    <button class="button is-info" id="p2">Player Two</button>
+                    <button class="button is-danger" id="reset">Player Reset</button>
+                </footer>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <script src="app.js"></script>
+</body>
+</html>
