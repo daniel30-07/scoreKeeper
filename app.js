@@ -1,60 +1,63 @@
-const playerOne = document.querySelector('#p1');
-const playerTwo = document.querySelector('#p2');
+const p1 = {
+    button: document.querySelector('#p1'),
+    cp: document.querySelector('#cp1'),
+    score: 0
+}
+
+const p2 = {
+    button: document.querySelector('#p2'),
+    cp: document.querySelector('#cp2'),
+    score: 0
+}
+
 const reset = document.querySelector('#reset');
 const points = document.querySelector('#points');
-const cp1 = document.querySelector('#cp1')
-const cp2 = document.querySelector('#cp2')
 
-let p1 = 0;
-let p2 = 0;
 let winningScore = 5;
 let isGameOver = false;
 
-cp1.textContent = p1;
-cp2.textContent = p2;
+cp1.textContent = p1.score;
+cp2.textContent = p2.score;
 
-
-playerOne.addEventListener('click', () => {
+function updateScore(player, opponent){
     if(!isGameOver){
-        p1++;
-        cp1.textContent = p1;
-        if(p1 === winningScore){
+        player.score += 1;
+        player.cp.textContent = player.score;
+        if(player.score === winningScore){
             isGameOver = true;
-            cp1.style.color = 'green';
-            cp2.style.color = 'red';
-            playerOne.disabled = true;
-            playerTwo.disabled = true;
+            player.cp.style.color = 'green';
+            opponent.cp.style.color = 'red';
+            player.button.disabled = true;
+            opponent.button.disabled = true;
         }
     }
+}
+
+function resetScore(){
+    isGameOver = false;
+    for(let p of [p1, p2]){
+        p.score = 0;
+        p.cp.textContent = p.score;
+        p.cp.style.color = 'black';
+        p.button.disabled = false;
+    }
+}
+
+p1.button.addEventListener('click', () => {
+    updateScore(p1, p2)
 });
 
-playerTwo.addEventListener('click', () => {
-    if(!isGameOver){
-        p2++;
-        cp2.textContent = p2;
-        if(p2 === winningScore){
-            isGameOver = true;
-            cp2.style.color = 'green';
-            cp1.style.color = 'red';
-            playerOne.disabled = true;
-            playerTwo.disabled = true;
-        }
-    }
+p2.button.addEventListener('click', () => {
+    updateScore(p2, p1)
 });
 
 points.addEventListener('change', function () {
     winningScore = parseInt(this.value)
 })
 
-reset.addEventListener('click', (e) => {
-    isGameOver = false;
-    p1 = 0;
-    p2 = 0;
-    cp1.textContent = p1;
-    cp2.textContent = p2;
-    cp1.style.color = 'black';
-    cp2.style.color = 'black';
-    playerOne.disabled = false;
-    playerTwo.disabled = false;
+
+reset.addEventListener('click', () => {
+    resetScore(p1, p2);
 })
+
 
